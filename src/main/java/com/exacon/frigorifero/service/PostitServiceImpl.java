@@ -33,13 +33,6 @@ public class PostitServiceImpl implements PostitService{
 
     }
 
-    @Override
-    public List<PostIt> findByTitle(String title) {
-
-        return repo.findByTitle(title);
-
-    }
-
 
     @Override
     public PostIt save(PostIt thePostit) {
@@ -53,25 +46,6 @@ public class PostitServiceImpl implements PostitService{
 
     }
 
-    @Override
-    public List<PostIt> deleteByTitle(String title) {
-
-        List<PostIt> postitsEliminati = new ArrayList<>();
-
-        List<PostIt> postits = repo.findByTitle(title);
-
-        if(postits == null || postits.size() == 0)
-            throw new RuntimeException("Non è stato trovato nessun postit con titolo: " + title);
-
-        for (int i = 0; i<postits.size(); i++)
-        {
-            Long idFirstPostit = postits.get(i).getId();
-            postitsEliminati.add(postits.get(i));
-            repo.deleteById(idFirstPostit);
-        }
-
-        return postitsEliminati;
-    }
 
 
 }

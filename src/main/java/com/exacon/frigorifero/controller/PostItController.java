@@ -31,31 +31,6 @@ public class PostItController {
     }
 
 
-
-    @GetMapping("/{postitId}")
-    public PostIt getById(@PathVariable Long postitId){
-
-        PostIt thePostit = service.findById(postitId);
-
-        if(thePostit == null)
-            throw new RuntimeException("Postit con id: " + postitId + " non trovato xd");
-
-        return thePostit;
-    }
-
-    @GetMapping("/ottieni/{title}")
-    public List<PostIt> getByTitle(@PathVariable String title){
-
-        List<PostIt> postits = service.findByTitle(title);
-
-        if(postits == null || postits.size() == 0)
-            throw new RuntimeException("Postit con titolo: " + title + " non trovati");
-
-        return postits;
-
-
-    }
-
     @GetMapping("/showAdd")
     public String showAddForm(Model theModel){
 
@@ -77,7 +52,6 @@ public class PostItController {
     }
 
 
-
     @PostMapping("/add/single")
     public String addPostit(@ModelAttribute("postit") PostIt thePostit){
 
@@ -86,29 +60,6 @@ public class PostItController {
         return "redirect:/postit/all";
     }
 
-    @PostMapping("/add/multiple")
-    public List<PostIt> addPostits(@RequestBody List<PostIt> postIts)
-    {
-        for (PostIt thePostit : postIts)
-        {
-            service.save(thePostit);
-        }
-
-        return postIts;
-    }
-
-
-
-    @DeleteMapping("/d/{title}")
-    public List<PostIt> deleteByTitle(@PathVariable String title){
-
-        List<PostIt> postitsEliminati = service.deleteByTitle(title);
-
-        if(postitsEliminati == null || postitsEliminati.size() == 0)
-            throw new RuntimeException("Non è stato trovato nessun postit con titolo: " + title);
-
-        return postitsEliminati;
-    }
 
     @GetMapping("/delete/single")
     public String deleteById(@RequestParam("postitId") Long theId){

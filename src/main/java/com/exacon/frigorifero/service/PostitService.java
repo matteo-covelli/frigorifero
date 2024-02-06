@@ -11,11 +11,10 @@ public interface PostitService {
 
     public PostIt findById(Long id);
 
-    public List<PostIt> findByTitle(String title);
 
     public PostIt save(PostIt thePostit);
 
     public void deleteById(Long id);
 
-    public List<PostIt> deleteByTitle(String title);
+
 }
