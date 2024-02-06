@@ -1,17 +1,15 @@
 package com.exacon.frigorifero.controller;
 
 import com.exacon.frigorifero.model.PostIt;
-import com.exacon.frigorifero.service.CosaDaCreare;
 import com.exacon.frigorifero.service.PostitService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/postit")
 @RequiredArgsConstructor
 public class PostItController {
@@ -22,9 +20,17 @@ public class PostItController {
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<PostIt>> getAll(){
-        return ResponseEntity.ok(service.findAll());
+    public String getAll(Model theModel){
+
+        List<PostIt> thePostits = service.findAll();
+
+        theModel.addAttribute("postits", thePostits);
+
+        return "home";
+
     }
+
+
 
     @GetMapping("/{postitId}")
     public PostIt getById(@PathVariable Long postitId){
@@ -50,12 +56,34 @@ public class PostItController {
 
     }
 
+    @GetMapping("/showAdd")
+    public String showAddForm(Model theModel){
+
+        PostIt thePostit = new PostIt();
+        theModel.addAttribute("postit", thePostit);
+
+        return "postit-form";
+
+    }
+
+    @GetMapping("/showUpdate")
+    public String showUpdateForm(@RequestParam("postitId") Long theId, Model theModel){
+
+        PostIt thePostit = service.findById(theId);
+        theModel.addAttribute("postit", thePostit);
+
+        return "postit-form";
+
+    }
+
+
 
     @PostMapping("/add/single")
-    public PostIt addPostit(@RequestBody PostIt thePostit){
+    public String addPostit(@ModelAttribute("postit") PostIt thePostit){
 
-        PostIt dbPostit = service.save(thePostit);
-        return dbPostit;
+        service.save(thePostit);
+
+        return "redirect:/postit/all";
     }
 
     @PostMapping("/add/multiple")
@@ -69,50 +97,7 @@ public class PostItController {
         return postIts;
     }
 
-    @PutMapping("/update")
-    public PostIt updatePostit(@RequestBody PostIt thePostit){
 
-        Long pId = thePostit.getId();
-        PostIt dbPostit = null;
-
-        if(service.findById(pId) != null)
-            dbPostit = service.save(thePostit);
-        else
-            throw new RuntimeException("postit da modificare non presente");
-
-        return dbPostit;
-
-    }
-
-    @PutMapping("/update/{postitId}")
-    public PostIt updatePostitTitle(@RequestBody PostIt thePostit,@PathVariable Long postitId){
-
-        String title = thePostit.getTitle();
-        PostIt p = service.findById(postitId);
-        if(p == null)
-            throw new RuntimeException("Il postit a cui vuoi modificare il titolo non esiste. Id inserito: " + postitId);
-
-        p.setTitle(title);
-        PostIt dbPostit = service.save(p);
-
-        return dbPostit;
-
-    }
-
-
-    @DeleteMapping("/{postitId}")
-    public String deleteById(@PathVariable Long postitId){
-
-        PostIt tempPostit = service.findById(postitId);
-
-        if(tempPostit != null)
-            service.deleteById(postitId);
-        else
-            throw new RuntimeException("Postit con id: " + postitId + " non presente");
-
-        return "Postit con id: " + postitId + " eliminato con successo";
-
-    }
 
     @DeleteMapping("/d/{title}")
     public List<PostIt> deleteByTitle(@PathVariable String title){
@@ -125,6 +110,14 @@ public class PostItController {
         return postitsEliminati;
     }
 
+    @GetMapping("/delete/single")
+    public String deleteById(@RequestParam("postitId") Long theId){
+
+
+       service.deleteById(theId);
+
+        return "redirect:/postit/all";
+    }
 
 
 
