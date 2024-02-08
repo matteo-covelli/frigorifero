@@ -12,25 +12,29 @@
   </head>
   <body>
     <div class="container">
-      <form
-        action="#"
-        th:action="@{/postit/add/single}"
-        th:object="${postit}"
-        method="post"
-      >
-        <input type="hidden" th:field="*{id}" />
+      <div class="container">
+        <form
+          action="#"
+          th:action="@{/postit/add/single}"
+          th:object="${postit}"
+          method="post"
+        >
+          <input type="hidden" th:field="*{id}" />
 
-        <div class="mb-3">
-          <label class="form-label">Titolo</label>
-          <input type="text" class="form-control" th:field="*{title}" />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Body</label>
-          <input type="text" class="form-control" th:field="*{body}" />
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+          <div class="mb-3">
+            <label class="form-label">Titolo</label>
+            <input type="text" class="form-control" th:field="*{title}" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Body</label>
+            <input type="text" class="form-control" th:field="*{body}" />
+          </div>
+          <a href="#" th:href="@{/postit/all}" class="btn btn-secondary"
+            >Back to Home</a
+          >
+          <button type="submit" class="btn btn-success">Update</button>
+        </form>
+      </div>
     </div>
     <!-- Bootstrap -->
     <script

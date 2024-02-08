@@ -1,7 +1,6 @@
 package com.exacon.frigorifero.service;
 
 import com.exacon.frigorifero.model.PostIt;
-import lombok.extern.java.Log;
 
 import java.util.List;
 
