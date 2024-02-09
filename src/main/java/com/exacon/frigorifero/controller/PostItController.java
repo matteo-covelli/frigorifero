@@ -17,9 +17,8 @@ public class PostItController {
     private final PostitService service;
 
 
-
     @GetMapping("/all")
-    public String getAll(Model theModel){
+    public String getAll(Model theModel) {
         List<PostIt> thePostits = service.findAll();
         PostIt p = new PostIt();
 
@@ -31,9 +30,8 @@ public class PostItController {
     }
 
 
-
     @GetMapping("/showUpdate")
-    public String showUpdateForm(@RequestParam("postitId") Long theId, Model theModel){
+    public String showUpdateForm(@RequestParam("postitId") Long theId, Model theModel) {
         PostIt thePostit = service.findById(theId);
         theModel.addAttribute("postit", thePostit);
 
@@ -42,7 +40,7 @@ public class PostItController {
 
 
     @PostMapping("/add/single")
-    public String addPostit(@ModelAttribute("postit") PostIt thePostit){
+    public String addPostit(@ModelAttribute("postit") PostIt thePostit) {
         service.save(thePostit);
 
         return "redirect:/postit/all";
@@ -50,12 +48,11 @@ public class PostItController {
 
 
     @GetMapping("/delete/single")
-    public String deleteById(@RequestParam("postitId") Long theId){
+    public String deleteById(@RequestParam("postitId") Long theId) {
         service.deleteById(theId);
 
         return "redirect:/postit/all";
     }
-
 
 
 }

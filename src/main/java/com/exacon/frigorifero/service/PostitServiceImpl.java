@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PostitServiceImpl implements PostitService{
+public class PostitServiceImpl implements PostitService {
 
     @Autowired
     private PostitRepository repo;
@@ -19,12 +19,12 @@ public class PostitServiceImpl implements PostitService{
         return repo.findAll();
     }
 
-    public PostIt findById(Long id){
+    public PostIt findById(Long id) {
         Optional<PostIt> result = repo.findById(id);
 
         PostIt thePostit = null;
 
-        if(result.isPresent()){
+        if (result.isPresent()) {
             thePostit = result.get();
         }
 
@@ -44,7 +44,6 @@ public class PostitServiceImpl implements PostitService{
         repo.deleteById(id);
 
     }
-
 
 
 }
