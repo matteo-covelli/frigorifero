@@ -14,9 +14,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class PostIt {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_postit")
-    @SequenceGenerator(name = "seq_postit", sequenceName = "seq_postit", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 

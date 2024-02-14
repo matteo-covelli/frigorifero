@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
   <head>
     <meta charset="UTF-8" />
 
@@ -29,16 +33,30 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <div class="container d-flex align-items-center m-0 p-0">
+          <p class="m-0">
+            User: <span sec:authentication="principal.username"></span>
+          </p>
+          <p class="ps-3 m-0">
+            Role(s): <span sec:authentication="principal.authorities"></span>
+          </p>
+        </div>
 
-        <!-- Button trigger modal -->
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-        >
-          ADD POSTIT
-        </button>
+        <div class="container d-flex m-0 justify-content-end">
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            ADD POSTIT
+          </button>
+
+          <form action="#" th:action="@{/logout}" method="POST" class="ps-3">
+            <button type="submit" class="btn btn-primary">Logout</button>
+          </form>
+        </div>
 
         <!-- Modal -->
         <div
@@ -112,7 +130,7 @@
     </nav>
     <!-- navbar end -->
 
-    <div class="container-fluid p-5">
+    <div class="container-fluid p-5" sec:authorize="hasRole('COMMON')">
       <div class="row row-cols-5 mb-5">
         <!-- card start -->
         <div class="col-sm-2 ms-3 me-3 mb-4" th:each="tempPostit : ${postits}">

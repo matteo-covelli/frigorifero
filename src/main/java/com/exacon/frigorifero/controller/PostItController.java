@@ -16,7 +16,6 @@ public class PostItController {
 
     private final PostitService service;
 
-
     @GetMapping("/all")
     public String getAll(Model theModel) {
         List<PostIt> thePostits = service.findAll();
