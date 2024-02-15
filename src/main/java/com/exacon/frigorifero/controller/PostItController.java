@@ -24,7 +24,7 @@ public class PostItController {
         theModel.addAttribute("postits", thePostits);
         theModel.addAttribute("postitSingolo", p);
 
-        return "home";
+        return "postit-home";
 
     }
 

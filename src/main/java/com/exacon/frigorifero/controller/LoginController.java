@@ -12,15 +12,14 @@ public class LoginController {
 
     @GetMapping("/")
     public String showlog() {
-        return "fancy-login";
+        return "login-page";
     }
 
     // il nome del getMapping corrisponde a quello specificato nel DemoSecurityConfig
     @GetMapping("/showMyLoginPage")
     public String showMyLoginPage() {
 
-        // return "plain-login";
-        return "fancy-login";
+        return "login-page";
     }
 
     // add request mapping for /access-denied
