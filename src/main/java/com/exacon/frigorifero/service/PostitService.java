@@ -10,7 +10,6 @@ public interface PostitService {
 
     public PostIt findById(Long id);
 
-
     public PostIt save(PostIt thePostit);
 
     public void deleteById(Long id);
