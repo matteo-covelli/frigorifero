@@ -3,6 +3,7 @@ package com.exacon.frigorifero.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
@@ -46,8 +47,7 @@ public class SecurityConfig {
                                 .loginProcessingUrl("/authenticateTheUser") // questo controllo viene fatto in automatico e non è necessario gestirlo con il controller
                                 .permitAll()
                 )
-                .logout(logout -> logout
-                        .permitAll()
+                .logout(LogoutConfigurer::permitAll
 
                 )
                 .exceptionHandling(configurer ->
