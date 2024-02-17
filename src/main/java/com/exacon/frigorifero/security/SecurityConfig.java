@@ -26,7 +26,7 @@ public class SecurityConfig {
 
         // define query to retrieve the authorities/roles by username
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "SELECT user_id, role FROM roles WHERE user_id=?");
+                "SELECT user_id, ruolo FROM roles WHERE user_id=?");
 
         return jdbcUserDetailsManager;
     }
@@ -37,7 +37,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(configurer ->
                         configurer
-                                .requestMatchers("/postit/**").hasAnyRole("COMMON")
+                                .requestMatchers("/postit/**").hasAnyRole("EMPLOYEE")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form ->

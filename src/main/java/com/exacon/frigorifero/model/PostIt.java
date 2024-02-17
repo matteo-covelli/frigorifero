@@ -17,7 +17,8 @@ public class PostIt {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_postit")
+    @SequenceGenerator(name = "seq_postit", sequenceName = "seq_postit", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 
@@ -30,4 +31,8 @@ public class PostIt {
     @Column(name = "timestamp")
     @UpdateTimestamp
     private LocalDateTime timestamp;
+
+    @Column(name = "user_id")
+    private String user_id;
+
 }

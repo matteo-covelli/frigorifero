@@ -14,7 +14,6 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="postit-home.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -256,7 +255,7 @@
     </nav>
     <!-- navbar end -->
 
-    <div class="container-fluid p-5" sec:authorize="hasRole('COMMON')">
+    <div class="container-fluid p-5" sec:authorize="hasRole('EMPLOYEE')">
       <div class="row row-cols-5 m-0 p-0">
         <!-- card start -->
         <div class="col m-4 p-0" th:each="tempPostit : ${postits}">
