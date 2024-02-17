@@ -28,23 +28,12 @@ public class PostItController {
 
     }
 
-
-    @GetMapping("/showUpdate")
-    public String showUpdateForm(@RequestParam("postitId") Long theId, Model theModel) {
-        PostIt thePostit = service.findById(theId);
-        theModel.addAttribute("postit", thePostit);
-
-        return "postit-form";
-    }
-
-
     @PostMapping("/add/single")
     public String addPostit(@ModelAttribute("postit") PostIt thePostit) {
         service.save(thePostit);
 
         return "redirect:/postit/all";
     }
-
 
     @GetMapping("/delete/single")
     public String deleteById(@RequestParam("postitId") Long theId) {
