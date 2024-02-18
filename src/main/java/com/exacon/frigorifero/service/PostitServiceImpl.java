@@ -25,10 +25,8 @@ public class PostitServiceImpl implements PostitService {
         return repo.findByUserId(userId);
     }
 
-
     public PostIt findById(Long id) {
         Optional<PostIt> result = repo.findById(id);
-
         PostIt thePostit = null;
 
         if (result.isPresent()) {
@@ -36,9 +34,7 @@ public class PostitServiceImpl implements PostitService {
         }
 
         return thePostit;
-
     }
-
 
     @Override
     public PostIt save(PostIt thePostit) {
@@ -47,9 +43,7 @@ public class PostitServiceImpl implements PostitService {
 
     @Override
     public void deleteById(Long id) {
-
         repo.deleteById(id);
-
     }
 
 

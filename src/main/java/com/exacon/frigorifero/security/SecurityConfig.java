@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 @Configuration
 public class SecurityConfig {
 
-
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
 
