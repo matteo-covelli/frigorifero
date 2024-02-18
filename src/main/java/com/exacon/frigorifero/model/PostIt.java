@@ -33,6 +33,6 @@ public class PostIt {
     private LocalDateTime timestamp;
 
     @Column(name = "user_id")
-    private String user_id;
+    private String userId;
 
 }

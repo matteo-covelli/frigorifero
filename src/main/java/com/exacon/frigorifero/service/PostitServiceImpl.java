@@ -3,6 +3,7 @@ package com.exacon.frigorifero.service;
 import com.exacon.frigorifero.model.PostIt;
 import com.exacon.frigorifero.repository.PostitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,12 @@ public class PostitServiceImpl implements PostitService {
     public List<PostIt> findAll() {
         return repo.findAll();
     }
+
+    @Override
+    public List<PostIt> findByUser_id(String userId) {
+        return repo.findByUserId(userId);
+    }
+
 
     public PostIt findById(Long id) {
         Optional<PostIt> result = repo.findById(id);

@@ -8,6 +8,8 @@ public interface PostitService {
 
     public List<PostIt> findAll();
 
+    public List<PostIt> findByUser_id(String userId);
+
     public PostIt findById(Long id);
 
     public PostIt save(PostIt thePostit);

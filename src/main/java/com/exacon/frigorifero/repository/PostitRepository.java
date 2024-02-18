@@ -10,4 +10,6 @@ import java.util.List;
 public interface PostitRepository extends JpaRepository<PostIt, Long> {
     List<PostIt> findByTitle(String title);
 
+    List<PostIt> findByUserId(String nome);
+
 }
