@@ -27,10 +27,7 @@ INSERT INTO roles
 VALUES
     ('john','ROLE_EMPLOYEE'),
     ('mary','ROLE_EMPLOYEE'),
-    ('mary','ROLE_MANAGER'),
-    ('susan','ROLE_EMPLOYEE'),
-    ('susan','ROLE_MANAGER'),
-    ('susan','ROLE_ADMIN');
+    ('susan','ROLE_EMPLOYEE');
 
 
 -- CREAZIONE TABELLA POSTIT

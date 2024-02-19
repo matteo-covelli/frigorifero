@@ -41,7 +41,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form ->
                         form
-                                .loginPage("/showMyLoginPage")
+                                .loginPage("/login")
                                 .defaultSuccessUrl("/postit/all")
                                 .loginProcessingUrl("/authenticateTheUser") // questo controllo viene fatto in automatico e non è necessario gestirlo con il controller
                                 .permitAll()
