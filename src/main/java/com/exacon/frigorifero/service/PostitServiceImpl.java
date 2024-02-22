@@ -16,24 +16,8 @@ public class PostitServiceImpl implements PostitService {
     private PostitRepository repo;
 
     @Override
-    public List<PostIt> findAll() {
-        return repo.findAll();
-    }
-
-    @Override
     public List<PostIt> findByUser_id(String userId) {
         return repo.findByUserId(userId);
-    }
-
-    public PostIt findById(Long id) {
-        Optional<PostIt> result = repo.findById(id);
-        PostIt thePostit = null;
-
-        if (result.isPresent()) {
-            thePostit = result.get();
-        }
-
-        return thePostit;
     }
 
     @Override

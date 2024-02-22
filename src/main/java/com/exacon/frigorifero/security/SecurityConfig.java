@@ -13,19 +13,16 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.sql.DataSource;
 
 @Configuration
-public class SecurityConfig{
+public class SecurityConfig {
 
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
 
-        // diciamo a spring security di usare jdbc authentication con il nostro data source
         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-        // define query to retrieve a user by username
         jdbcUserDetailsManager.setUsersByUsernameQuery(
                 "SELECT user_id, pw, active FROM users WHERE user_id=?");
 
-        // define query to retrieve the authorities/roles by username
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
                 "SELECT user_id, ruolo FROM roles WHERE user_id=?");
 
@@ -35,10 +32,10 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-
         http.authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .requestMatchers("/login").permitAll()
                                 .requestMatchers("/postit/**").hasAnyRole("EMPLOYEE")
                                 .anyRequest().authenticated()
                 )
@@ -46,7 +43,7 @@ public class SecurityConfig{
                         form
                                 .loginPage("/login")
                                 .defaultSuccessUrl("/postit/all")
-                                .loginProcessingUrl("/authenticateTheUser") // questo controllo viene fatto in automatico e non è necessario gestirlo con il controller
+                                .loginProcessingUrl("/authenticateTheUser")
                                 .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll
@@ -58,8 +55,6 @@ public class SecurityConfig{
 
         return http.build();
     }
-
-
 
 
 }

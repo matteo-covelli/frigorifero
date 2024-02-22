@@ -17,17 +17,6 @@ public class PostItController {
 
     private final PostitService service;
 
-//    @GetMapping("/t")
-//    public String getAll(Model theModel) {
-//        List<PostIt> thePostits = service.findAll();
-//        PostIt p = new PostIt();
-//
-//        theModel.addAttribute("postits", thePostits);
-//        theModel.addAttribute("postitSingolo", p);
-//        return "postit-home";
-//
-//    }
-
     @GetMapping("/all")
     public String getPersonaPostits(Authentication authentication, Model theModel) {
         List<PostIt> personalPostits = service.findByUser_id(authentication.getName());
