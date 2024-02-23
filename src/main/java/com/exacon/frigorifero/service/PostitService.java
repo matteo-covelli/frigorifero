@@ -8,7 +8,7 @@ public interface PostitService {
 
     public List<PostIt> findByUser_id(String userId);
 
-    public PostIt save(PostIt thePostit);
+    public void save(PostIt thePostit);
 
     public void deleteById(Long id);
 

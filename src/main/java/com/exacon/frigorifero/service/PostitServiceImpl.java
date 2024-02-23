@@ -3,11 +3,9 @@ package com.exacon.frigorifero.service;
 import com.exacon.frigorifero.model.PostIt;
 import com.exacon.frigorifero.repository.PostitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PostitServiceImpl implements PostitService {
@@ -21,8 +19,8 @@ public class PostitServiceImpl implements PostitService {
     }
 
     @Override
-    public PostIt save(PostIt thePostit) {
-        return repo.save(thePostit);
+    public void save(PostIt thePostit) {
+        repo.save(thePostit);
     }
 
     @Override
