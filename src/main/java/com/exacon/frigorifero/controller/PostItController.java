@@ -18,7 +18,7 @@ public class PostItController {
     private final PostitService service;
 
     @GetMapping("/all")
-    public String getPersonaPostits(Authentication authentication, Model theModel) {
+    public String getPersonalPostits(Authentication authentication, Model theModel) {
         List<PostIt> personalPostits = service.findByUser_id(authentication.getName());
         PostIt p = new PostIt();
         theModel.addAttribute("postits", personalPostits);
