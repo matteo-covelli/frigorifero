@@ -31,11 +31,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http.authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/login").permitAll()
+                                .requestMatchers("/error").permitAll()
                                 .requestMatchers("/postit/**").hasAnyRole("EMPLOYEE")
                                 .anyRequest().authenticated()
                 )
