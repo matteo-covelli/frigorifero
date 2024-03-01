@@ -36,6 +36,7 @@ public class SecurityConfig {
                         configurer
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/login").permitAll()
+                                .requestMatchers("/error").permitAll()
                                 .requestMatchers("/postit/**").hasAnyRole("EMPLOYEE")
                                 .anyRequest().authenticated()
                 )
