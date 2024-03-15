@@ -5,4 +5,5 @@ docker run --name postit-app-db ^
  -e PGDATA=/var/lib/postgresql/data/postitData ^
  -p 5434:5432 ^
  -v C:\Docker_Data:/var/lib/postgresql/data ^
+ --network=postit-net ^
  postgres:14.1-alpine
